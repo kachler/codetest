@@ -1,0 +1,30 @@
+{
+  "name": "movie-factoid-cards",
+  "version": "1.0.0",
+  "description": "## Overall Requirements Create an application to feature one of your extracurricular interests. Select an interest that has items of alike members (Stamps, Books, Songs, etc). Please use this as a chance to showcase your personality by selecting a category of things you enjoy.",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon src/server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kachler/codetest.git"
+  },
+  "author": "Timothy Kachler <kachler@gmail.com> (https://github.com/kachler/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kachler/codetest/issues"
+  },
+  "homepage": "https://github.com/kachler/codetest#readme",
+  "devDependencies": {
+    "nodemon": "1.18.11"
+  },
+  "dependencies": {
+    "body-parser": "1.18.3",
+    "cors": "2.8.5",
+    "dotenv": "7.0.0",
+    "express": "4.16.4",
+    "mysql": "2.16.0",
+    "util": "0.11.1"
+  }
+}
