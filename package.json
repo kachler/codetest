@@ -6,7 +6,7 @@
   "scripts": {
     "webpack": "webpack",
     "dev": "webpack-dev-server --disable-host-check",
-    "test": "nodemon src/server/server.js"
+    "start": "nodemon src/server/server.js"
   },
   "repository": {
     "type": "git",
@@ -20,12 +20,14 @@
   "homepage": "https://github.com/kachler/codetest#readme",
   "devDependencies": {
     "@babel/core": "7.4.3",
+    "@babel/plugin-proposal-class-properties": "7.4.0",
     "@babel/preset-env": "7.4.3",
     "@babel/preset-react": "7.0.0",
     "babel": "6.23.0",
     "babel-core": "6.26.3",
     "babel-loader": "8.0.5",
     "css-loader": "2.1.1",
+    "node-sass": "4.11.0",
     "nodemon": "1.18.11",
     "sass-loader": "7.1.0",
     "style-loader": "0.23.1",
@@ -34,13 +36,19 @@
     "webpack-dev-server": "3.3.1"
   },
   "dependencies": {
+    "@material-ui/core": "3.9.3",
+    "@material-ui/icons": "3.0.2",
+    "axios": "0.18.0",
     "body-parser": "1.18.3",
     "cors": "2.8.5",
     "dotenv": "7.0.0",
     "express": "4.16.4",
     "mysql": "2.16.0",
     "path": "0.12.7",
+    "prop-types": "15.7.2",
     "react": "16.8.6",
+    "react-activity": "1.2.2",
+    "react-awesome-modal": "2.0.5",
     "react-dom": "16.8.6",
     "util": "0.11.1"
   }

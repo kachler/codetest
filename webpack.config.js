@@ -6,6 +6,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js',
+    publicPath: '/build/'
   },
   module: {
     rules: [
@@ -15,38 +16,23 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/react', '@babel/env'],
+            plugins: ['@babel/plugin-proposal-class-properties'],
           },
         },
       },
       {
-        test: /\.css$/,
+        test: /\.(s*)css$/,
         use: [
-          {
-            loader: 'style-loader'
-          },
-          {
-            loader: 'css-loader'
-          },
+          'style-loader',
+          'css-loader',
+          'sass-loader'
         ]
-      },
-      {
-        test: /\.s?css$/,
-        use: [
-          {
-            loader: 'style-loader',
-          },
-          {
-            loader: 'css-loader',
-          },
-          {
-            loader: 'sass-loader',
-          },
-        ],
       },
     ],
   },
   devServer: {
     publicPath: '/build/',
+    compress: true,
     port: 8080
   }
 };
