@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "webpack": "webpack",
-    "dev": "webpack-dev-server --disable-host-check",
+    "dev": "webpack-dev-server",
     "start": "nodemon src/server/server.js"
   },
   "repository": {
@@ -38,10 +38,10 @@
   "dependencies": {
     "@material-ui/core": "3.9.3",
     "@material-ui/icons": "3.0.2",
-    "axios": "0.18.0",
     "body-parser": "1.18.3",
     "cors": "2.8.5",
     "dotenv": "7.0.0",
+    "dotenv-webpack": "1.7.0",
     "express": "4.16.4",
     "mysql": "2.16.0",
     "path": "0.12.7",
