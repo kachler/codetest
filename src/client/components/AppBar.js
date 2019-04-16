@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import AddButton from '../buttons/AddButton';
 
 const styles = {
   root: {
@@ -12,7 +13,7 @@ const styles = {
 };
 
 function SimpleAppBar(props) {
-  const { classes } = props;
+  const { classes, addCard } = props;
 
   return (
     <div className={classes.root}>
@@ -21,6 +22,9 @@ function SimpleAppBar(props) {
           <Typography variant="h6" color="inherit">
             Movie Factoid Cards
           </Typography>
+          <div className="add-button">
+            <AddButton className="button" id="add" addCard={addCard} />
+          </div>
         </Toolbar>
       </AppBar>
     </div>

@@ -17,8 +17,8 @@ function AddButton(props) {
   const { classes, addCard } = props;
   return (
     <div>
-      <Fab color="primary" aria-label="Add" className={classes.fab}>
-        <AddIcon id='add' onClick={addCard} />
+      <Fab size="small" color="primary" aria-label="Add" className={classes.fab}>
+        <AddIcon id="add" onClick={addCard} />
       </Fab>
     </div>
   );

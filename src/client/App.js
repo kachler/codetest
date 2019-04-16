@@ -39,7 +39,7 @@ class App extends Component {
 
   getAllCards = () => {
     this.setState((state) => { state.isLoading = true; });
-    fetch('http://localhost:3000/cards')
+    fetch(process.env.API_URL)
       .then(response => response.json())
       .then((data) => { 
         this.setState({ 
@@ -96,6 +96,20 @@ class App extends Component {
     });
   }
 
+  lastCard = () => {
+    const { currentIndex, cards } = this.state;
+    let lastIndex = cards.length - 1;
+    this.setState({
+      currentCard: {
+        url: cards[lastIndex].mfc_photo_url,
+        title: cards[lastIndex].mfc_title,
+        desc: cards[lastIndex].mfc_desc,
+        fact: cards[lastIndex].mfc_factoid,
+      },
+      currentIndex: lastIndex,
+    });
+  }
+
   inputChange = (event) => {
     this.setState({
       newCard: {
@@ -121,32 +135,50 @@ class App extends Component {
   }
 
   submitCard = () => {
-    const { newCard } = this.state;
+    const { newCard, cards } = this.state;
     const data = {
       mfc_title: newCard.title,
       mfc_photo_url: newCard.url,
       mfc_desc: newCard.desc,
       mfc_factoid: newCard.fact,
     };
-    fetch('http://localhost:3000/cards', {
+    fetch(process.env.API_URL, {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
         'Content-Type': 'application/json'
       }
     })
-      .then(response => console.log('Success:', response))
+      .then(() => { this.setState({ cards: cards.concat([data]) }) })
+      .then(() => { this.lastCard(); })
       .then(() => { this.cancelModal(); })
       .catch(error => console.error('Error:', error));
   }
+
+  showWidget = () => {
+    cloudinary.openUploadWidget({
+      cloudName: process.env.CLOUDINARY_CLOUDNAME, uploadPreset: process.env.CLOUDINARY_UPLOAD_PRESET}, (error, result) => {
+        if (result && result.event === "success") {
+          this.setState({
+            newCard: {
+              url: result.info.secure_url,
+              title: this.state.newCard.title,
+              desc: this.state.newCard.desc,
+              fact: this.state.newCard.fact,
+            }
+          });
+        }
+    });
+  }
  
   render() {
-    const { currentCard, newCard, isLoading, showModal } = this.state;
+    const { currentCard, newCard, isLoading, showModal, showWidget } = this.state;
+
     if (isLoading) {
       return (
         <div>
           <header>
-            <AppBar />
+            <AppBar addCard={this.addCard} />
           </header>
           <div id="loading">
             <Digital size={30} speed={1} />
@@ -154,22 +186,20 @@ class App extends Component {
         </div>
       );
     }
+
     return (
       <div>
         <header>
-          <AppBar />
+          <AppBar addCard={this.addCard} />
         </header>
-          <div className="cards">
-            <CardView currentCard={currentCard} />
-          </div>
-          <div className="navbar">
-            <PrevButton className="button" previousCard={this.previousCard} />
-            <AddButton className="button" addCard={this.addCard} />
-            <NextButton className="button" nextCard={this.nextCard} />
+          <div className="prev-card-next-row">
+            <PrevButton className="nav-button" id="prev" previousCard={this.previousCard} />
+            <CardView className="cards" currentCard={currentCard} />
+            <NextButton className="nav-button" id="next" nextCard={this.nextCard} />
           </div>
           <div className='modal'>
             <Modal visible={showModal} style={{ width: 500, height: 500 }} effect="fadeInUp" onClickAway={() => this.cancelModal()}>
-              <NewCard newCard={newCard} inputChange={this.inputChange} cancelModal={this.cancelModal} submitCard={this.submitCard} />
+              <NewCard newCard={newCard} inputChange={this.inputChange} cancelModal={this.cancelModal} submitCard={this.submitCard} showWidget={this.showWidget} />
             </Modal>
           </div>
       </div>
