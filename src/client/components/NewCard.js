@@ -1,21 +1,29 @@
 import React from 'react';
-import Upload from '../containers/Upload'
+import Typography from '@material-ui/core/Typography';
+import UploadButton from '../buttons/UploadButton';
+import CancelButton from '../buttons/CancelButton';
+import SubmitButton from '../buttons/SubmitButton';
 
 const NewCard = (props) => {
-  const { newCard, inputChange, cancelModal, submitCard } = props;
+  const { newCard, inputChange, cancelModal, submitCard, showWidget } = props;
+
   return (
-    <div className='form'>
-      <Upload />
-      <h3>Movie Photo</h3>
-      <input id='url' type='text' value={newCard.url} onChange={inputChange} />
-      <h3>Movie Title</h3>
-      <input id='title' type='text' value={newCard.title} onChange={inputChange} />
-      <h3>Movie Description</h3>
-      <input id='desc' type='text' value={newCard.desc} onChange={inputChange} />
-      <h3>Movie Factoid</h3>
-      <input id='fact' type='text' value={newCard.fact} onChange={inputChange} />
-      <button id='submit' onClick={submitCard} >Submit</button>
-      <button id='cancel' onClick={cancelModal} >Cancel</button>
+    <div style={{ paddingTop: 25, paddingRight: 25, paddingBottom: 25, paddingLeft: 25 }} className='form'>
+      <Typography variant="h5" component="h2">Add New Card</Typography>
+      <Typography className="title" variant="h6" component="h2">Movie Title</Typography>
+      <textarea style={{ resize: 'none' }} rows="4" cols="80" id='title' type='text' value={newCard.title} onChange={inputChange} />
+      <Typography className="title" variant="h6" component="h2">Movie Description</Typography>
+      <textarea style={{ resize: 'none' }} rows="4" cols="80" id='desc' type='text' value={newCard.desc} onChange={inputChange} />
+      <Typography className="title" variant="h6" component="h2">Movie Factoid</Typography>
+      <textarea style={{ resize: 'none' }} rows="4" cols="80" id='fact' type='text' value={newCard.fact} onChange={inputChange} />
+      <div className="upload-button">
+        <UploadButton showWidget={showWidget} />
+      </div>
+      <div className="cancel-submit-buttons">
+        <CancelButton cancelModal={cancelModal} />
+        <SubmitButton submitCard={submitCard} />
+      </div>
+
     </div>
   );
 }
