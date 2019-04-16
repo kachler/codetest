@@ -2,13 +2,34 @@ body {
   background-color: lightgrey;
 }
 
-.navbar {
+.add-button {
+  padding-left: 80%;
+}
+
+.movie-info {
+  width: 100%;
   height: auto;
-  width: 230px;
-  display: flex;
-  margin: auto;
+}
+
+.prev-card-next-row {
   padding-top: 20px;
-  padding-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.poster {
+  width: 100%;
+  height:auto;
+}
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 320px;
+  width: auto;
 }
 
 .form {
@@ -21,11 +42,18 @@ body {
   width: auto;
 }
 
-.cards {
-  height: 400px;
-  width: 400px;
-  padding-top: 80px;
-  margin: auto;
+.upload-button {
+  padding-top: 10px;
+}
+
+.title {
+  padding-top: 10px;
+}
+
+.cancel-submit-buttons {
+  padding-top: 10px;
+  display: flex;
+  flex-direction: row;
 }
 
 #loading {
